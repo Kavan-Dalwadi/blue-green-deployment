@@ -23,7 +23,7 @@ jobs:
   deploy:
 
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/master'
+    if:  startsWith(github.head_ref, 'stage/')
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
