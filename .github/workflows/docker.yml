@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+#   push:
+#     branches: [ dev ]
+  pull_request:
+    branches: 
+      - master
+      - stage
+
+jobs:
+
+  stage:
+
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/stage'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-stage
+       docker push kdalwadi28/nginx-stage
+ 
+  deploy:
+
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-prod
+       docker push kdalwadi28/nginx-prod
