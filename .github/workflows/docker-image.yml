@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+#   push:
+#     branches: [ dev ]
+  pull_request_target:
+    types:
+      - opened
+
+jobs:
+
+  stage:
+    if:  startsWith(github.head_ref, 'dev/')
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-stage
+       docker push kdalwadi28/nginx-stage
+ 
+  deploy:
+
+    runs-on: self-hosted
+    if:  startsWith(github.head_ref, 'stage/')
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-prod
+       docker push kdalwadi28/nginx-prod
