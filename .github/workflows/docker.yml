@@ -3,7 +3,7 @@ name: Docker Image CI
 on:
 #   push:
 #     branches: [ dev ]
-  pull_request:
+  pull_request_target:
     branches: 
       - master
       - stage
@@ -11,9 +11,8 @@ on:
 jobs:
 
   stage:
-
+    if:  startsWith(github.head_ref, 'dev/')
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/stage'
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
@@ -24,7 +23,7 @@ jobs:
   deploy:
 
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/master'
+    if:  startsWith(github.head_ref, 'stage/')
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
