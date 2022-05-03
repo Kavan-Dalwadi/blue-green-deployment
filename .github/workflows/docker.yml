@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-stage
+       docker build ./app/ --tag kdalwadi28/nginx-stage
        docker push kdalwadi28/nginx-stage
  
   deploy:
@@ -27,5 +27,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-       docker build ./app/ --file Dockerfile --tag kdalwadi28/nginx-prod
+       docker build ./app/ --tag kdalwadi28/nginx-prod
        docker push kdalwadi28/nginx-prod
