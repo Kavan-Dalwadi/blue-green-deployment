@@ -4,9 +4,8 @@ on:
 #   push:
 #     branches: [ dev ]
   pull_request_target:
-    branches: 
-      - master
-      - stage
+    types:
+      - opened
 
 jobs:
 
