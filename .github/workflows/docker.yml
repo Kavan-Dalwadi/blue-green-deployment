@@ -10,7 +10,7 @@ on:
 jobs:
 
   stage:
-    if:  startsWith(github.head_ref, 'dev/')
+#    if:  startsWith(github.head_ref, 'dev/')
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
   deploy:
 
     runs-on: self-hosted
-    if:  startsWith(github.head_ref, 'stage/')
+ #   if:  startsWith(github.head_ref, 'stage/')
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
