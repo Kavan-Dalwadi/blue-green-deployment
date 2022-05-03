@@ -16,8 +16,8 @@ spec:
         spec:
             containers:
                 - name: example-api
-                  imagePullPolicy: Never
-                  image: dipak:latest
+                  imagePullPolicy: Always
+                  image: kdalwadi28/nginx-stage
                   ports:
                       - containerPort: 5000
 ---
@@ -26,9 +26,11 @@ kind: Service
 metadata:
     name: prod-green
 spec:
+    type: NodePort
     selector:
         app: example
         env: green
     ports:
         - port: 5000
           targetPort: 5000
+          nodePort: 30009
