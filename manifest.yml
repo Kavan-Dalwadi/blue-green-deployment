@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: prod-green
+    name: prod-$CLR
 spec:
     selector:
         matchLabels:
             app: example
-            env: green
+            env: $CLR
     replicas: 1
     template:
         metadata:
             labels:
                 app: example
-                env: green
+                env: $CLR
         spec:
             containers:
                 - name: example-api
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: prod-green
+    name: prod-$CLR
 spec:
     type: NodePort
     selector:
         app: example
-        env: green
+        env: $CLR
     ports:
         - port: 5000
           targetPort: 5000
