@@ -22,7 +22,7 @@ jobs:
     - name: Restart K8s Deployment
       run: |
        export CLR=green
-       envsubst < manifest.yml | kubectl apply -f -
+       envsubst < ./manifest.yml | kubectl apply -f -
        kubectl rollout restart deployment prod-green
  
   deploy:
@@ -39,5 +39,5 @@ jobs:
     - name: Restart K8s Deployment
       run: |
        export CLR=blue
-       envsubst < manifest.yml | kubectl apply -f -
+       envsubst < ./manifest.yml | kubectl apply -f -
        kubectl rollout restart deployment prod-blue
