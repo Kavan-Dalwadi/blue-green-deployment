@@ -26,11 +26,29 @@ kind: Service
 metadata:
     name: prod-$CLR
 spec:
-    type: NodePort
     selector:
         app: example
         env: $CLR
     ports:
         - port: 5000
           targetPort: 5000
-          nodePort: 30009
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prod-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: my-nginx.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prod-$CLR
+                port:
+                  number: 5000
+...                  
