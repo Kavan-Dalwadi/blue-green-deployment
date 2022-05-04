@@ -19,6 +19,11 @@ jobs:
        echo "$github.head_ref"
        docker build ./app/ --tag kdalwadi28/nginx-stage
        docker push kdalwadi28/nginx-stage
+    - name: Restart K8s Deployment
+      run: |
+       export CLR=green
+       envsubst < manifest | kubectl apply -f -
+       kubectl rollout restart deployment prod-green
  
   deploy:
 
@@ -31,3 +36,9 @@ jobs:
        echo "$github.head_ref"
        docker build ./app/ --tag kdalwadi28/nginx-prod
        docker push kdalwadi28/nginx-prod
+
+    - name: Restart K8s Deployment
+      run: |
+       export CLR=blue
+       envsubst < manifest | kubectl apply -f -
+       kubectl rollout restart deployment prod-blue
