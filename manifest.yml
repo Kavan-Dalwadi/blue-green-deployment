@@ -17,7 +17,7 @@ spec:
             containers:
                 - name: example-api
                   imagePullPolicy: Always
-                  image: kdalwadi28/nginx-stage
+                  image: kdalwadi28/nginx-$BRANCH
                   ports:
                       - containerPort: 80
 ---
