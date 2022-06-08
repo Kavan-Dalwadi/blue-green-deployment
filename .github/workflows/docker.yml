@@ -21,11 +21,11 @@ jobs:
     - uses: actions/checkout@v3       
     - name: Restart K8s Deployment
       run: |
-       export CLR=green
-       export BRANCH=stage
-       export PRT=30080
-       envsubst < ./manifest.yml | kubectl apply -f -
-       kubectl rollout restart deployment prod-green
+#       export CLR=green
+#       export BRANCH=stage
+#       export PRT=30080
+#       envsubst < ./manifest.yml | kubectl apply -f -
+#       kubectl rollout restart deployment prod-green
  
   deploy:
 
@@ -40,8 +40,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Restart K8s Deployment
       run: |
-       export CLR=blue
-       export BRANCH=prod
-       export PRT=30080
-       envsubst < ./manifest.yml | kubectl apply -f -
-       kubectl rollout restart deployment prod-blue
+#       export CLR=blue
+#       export BRANCH=prod
+#       export PRT=30080
+#       envsubst < ./manifest.yml | kubectl apply -f -
+#       kubectl rollout restart deployment prod-blue
