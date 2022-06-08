@@ -20,9 +20,9 @@ jobs:
        docker build ./app/ --tag kdalwadi28/nginx-stage 
        docker push kdalwadi28/nginx-stage
        docker rmi kdalwadi28/nginx-stage
-       docker build ./app/ --tag kdalwadi/nginx-stage:$GIT_COMMIT
-       docker push kdalwadi/nginx-stage:$GIT_COMMIT
-       docker rmi kdalwadi/nginx-stage:$GIT_COMMIT
+       docker build ./app/ --tag kdalwadi28/nginx-stage:$GIT_COMMIT
+       docker push kdalwadi28/nginx-stage:$GIT_COMMIT
+       docker rmi kdalwadi28/nginx-stage:$GIT_COMMIT
     - uses: actions/checkout@v3       
     - name: Restart K8s Deployment
       run: |
@@ -44,9 +44,9 @@ jobs:
        docker build ./app/ --tag kdalwadi28/nginx-prod --tag kdalwadi/nginx-prod:$GIT_COMMIT
        docker push kdalwadi28/nginx-prod
        docker rmi kdalwadi28/nginx-prod
-       docker build ./app/ --tag kdalwadi/nginx-prod:$GIT_COMMIT
-       docker push kdalwadi/nginx-prod:$GIT_COMMIT
-       docker rmi kdalwadi/nginx-prod:$GIT_COMMIT
+       docker build ./app/ --tag kdalwadi28/nginx-prod:$GIT_COMMIT
+       docker push kdalwadi28/nginx-prod:$GIT_COMMIT
+       docker rmi kdalwadi28/nginx-prod:$GIT_COMMIT
        
     - uses: actions/checkout@v3
     - name: Restart K8s Deployment
