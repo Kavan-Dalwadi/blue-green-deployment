@@ -54,5 +54,9 @@ jobs:
 #       export CLR=blue
 #       export BRANCH=prod
 #       export PRT=30080
+#       
+#       we can use sed -i 's/oldvalue/newvalue/g' filename 
+#########       or        ##############
+#       we can also use     envsubst < ./manifest.yml | tee manifest.yml
 #       envsubst < ./manifest.yml | kubectl apply -f -
 #       kubectl rollout restart deployment prod-blue
